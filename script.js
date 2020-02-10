@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", start);
+
 const endpoint = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
 
-let meals = [];
-let filter = "alle";
 
 const container = document.querySelector(".data_container");
 const mealsTemplate = document.querySelector("template");
 
+let meals = [];
+let filter = "alle";
 
 
 function start() {
-    loadMealsDataData();
+
+    loadMealsData();
     addEventListenersToButtons();
 }
 
@@ -33,7 +35,7 @@ function filtrering() {
 
 
 
-    filter = this.dataset.ret;
+    filter = this.dataset.kategori;
 
     document.querySelector("h1").textContent = this.textContent;
 
@@ -60,11 +62,11 @@ function visMeals() {
     container.innerHTML = "";
     meals.feed.entry.forEach((meal) => {
 
-        if (filter == "alle" || filter == meal.gsx$sex.$t) {
+        if (filter == "alle" || filter == meal.gsx$kategori.$t) {
 
 
 
-            let klon = personerTemplate.cloneNode(true).content;
+            let klon = mealsTemplate.cloneNode(true).content;
 
             klon.querySelector("img").src = meal.gsx$billede.$t;
             klon.querySelector("h3").textContent += meal.gsx$navn.$t;
