@@ -4,11 +4,43 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Bistro Babushka</title>
     <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Courier+Prime|Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel='icon' href='pics/babushka_favicon.ico' type='image/x-icon' />
 </head>
 
 <body>
+
+    <div class="header_wrap_big">
+        <div class="header_wrap_small">
+            <header>
+                <img src="pics/babushka_logo.svg" alt="Babushka Bistro logo">
+            </header>
+        </div>
+    </div>
+
+
+    <section class="hide" id="detalje">
+        <button class="popup_button">X</button>
+        <article id="popup">
+            <h2> </h2>
+            <div class="popup_wrap">
+                <div> <img src="" alt=""></div>
+                <div>
+                    <p class="lang"></p>
+                    <p class="oprindelse">Oprindelse: </p>
+                    <p class="pris_popup"></p>
+                </div>
+
+
+            </div>
+        </article>
+
+    </section>
+
     <h1>Alle</h1>
     <nav>
         <button class="filter valgt" data-kategori="alle">Alle</button>
@@ -27,15 +59,26 @@
                 <img src="" alt="">
                 <h3> </h3>
                 <p class="kort"> </p>
-                <p class="kategori"> </p>
-                <p class="lang"></p>
-                <p class="oprindelse">Oprindelse: </p>
-                <p class="pris">Pris: </p>
+                <p class="pris"></p>
             </article>
 
         </template>
     </main>
+    <footer>
+        <div class="footer_wrap">
+            <div class="txt_left">
+                <p> Adresse: <br>
+                    Lygten 16 <br>
+                    2400 Kbh N</p>
+            </div>
+            <div class="txt_right">
+                <p>Åbningstider: <br>
+                    Mandag - fredag 10:30-22:00<br>
+                    Lørdag - søndag 12:00-23:00</p>
+            </div>
+        </div>
 
+    </footer>
 
     <script src="script.js"></script>
 </body></html>

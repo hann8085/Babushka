@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", start);
 
-const endpoint = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
+const url = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
 
 
 const container = document.querySelector(".data_container");
 const mealsTemplate = document.querySelector("template");
+const detalje = document.querySelector("#detalje");
 
 let meals = [];
 let filter = "alle";
@@ -19,7 +20,7 @@ function start() {
 
 
 async function loadMealsData() {
-    const response = await fetch(endpoint);
+    const response = await fetch(url);
     console.log(response);
 
     meals = await response.json();
@@ -68,21 +69,42 @@ function visMeals() {
 
             let klon = mealsTemplate.cloneNode(true).content;
 
-            klon.querySelector("img").src = meal.gsx$billede.$t;
+            //    Info der dukker op i hver meal kort
+            klon.querySelector("img").src = "pics/small/" + meal.gsx$billede.$t + "-sm.jpg";
             klon.querySelector("h3").textContent += meal.gsx$navn.$t;
-            klon.querySelector(".pris").textContent += meal.gsx$pris.$t;
+            klon.querySelector(".pris").textContent += meal.gsx$pris.$t + " kr";
             klon.querySelector(".kort").textContent += meal.gsx$kort.$t;
-            klon.querySelector(".lang").textContent += meal.gsx$lang.$t;
-            klon.querySelector(".oprindelse").textContent += meal.gsx$oprindelse.$t;
-
-            klon.querySelector(".kategori").textContent += meal.gsx$kategori.$t;
 
 
+
+            klon.querySelector(".meals").addEventListener("click", () =>
+                visDetalje(meal));
 
             container.appendChild(klon);
 
 
         }
     })
+
+}
+
+function visDetalje(meal) {
+    console.log(meal.gsx$navn.$t);
+
+    detalje.classList.remove("hide");
+
+    detalje.querySelector(".popup_button").addEventListener("click", () =>
+        detalje.classList.add("hide"));
+
+    //    Info der dukker op i popup
+
+    detalje.querySelector("h2").textContent = meal.gsx$navn.$t;
+
+    detalje.querySelector("img").src = "pics/large/" + meal.gsx$billede.$t + ".jpg";
+    detalje.querySelector("img").alt = "Billede af " + meal.gsx$navn.$t;
+    detalje.querySelector(".lang").textContent = meal.gsx$lang.$t;
+    detalje.querySelector(".oprindelse").textContent = meal.gsx$oprindelse.$t;
+    detalje.querySelector(".pris_popup").textContent = meal.gsx$pris.$t + " kr";
+
 
 }

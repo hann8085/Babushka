@@ -1,69 +1,298 @@
 * {
-    background-color: #f4f8ff;
-    font-family: sans-serif;
+    background-color: #f7f7f7;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
 }
+
+/*  ___________________________________________________________HEADER________ */
+
+header img {
+    position: relative;
+    width: 40vw;
+    background-color: transparent;
+    left: 1vw;
+    top: 2vw;
+    padding-bottom: 7vw;
+}
+
+
+
+/*  ___________________________________________________________TEXT________ */
+h1 {
+    display: none;
+}
+
+
+h3,
+h2 {
+    text-transform: capitalize;
+    background-color: white;
+    font-family: 'Courier Prime', monospace;
+}
+
+
+
+p {
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+}
+
+/*  ___________________________________________________________MEALS_______ */
+
+
 
 .data_container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 
-    grid-gap: 10px;
-    max-width: 1000px;
+    grid-gap: 35px;
+    max-width: 1300px;
     margin: 0 auto;
-
+    padding-bottom: 5vw;
 
 }
 
 .meals {
-    box-shadow: 3px 3px 5px #afafaf;
+    box-shadow: 1px 1px 5px #afafaf;
     padding: 2vw;
     background-color: white;
-}
-
-h3 {
-    text-transform: capitalize;
-    background-color: white;
+    cursor: pointer;
 }
 
 img {
-    padding-top: 2vw;
     width: 100%;
     background-color: white;
 }
 
-p {
-    background-color: white;
-}
+/*  ___________________________________________________________FILTER________ */
 
 nav {
-    display: flex;
-    justify-content: space-between;
+    text-align: center;
+
 
 }
 
 button {
-    width: 20vw;
+
     font-size: 1.3em;
-    background-color: white;
+    background-color: transparent;
+    border-color: transparent;
     margin-bottom: 3vw;
     margin-top: 2vw;
-    padding: 1vw;
+    padding-left: 4.7vw;
+    padding-right: 4.7vw;
 
+    font-family: 'Courier Prime', monospace;
+    color: #868686;
+    cursor: pointer;
 }
 
+
 button:hover {
-    background-color: #efdebe;
+    text-decoration-line: underline;
+    text-decoration-color: #c64545;
 }
 
 .valgt {
-    border-color: #fdb34e;
-    border-width: 8px;
+    text-decoration-line: underline;
+    text-decoration-color: #c64545;
+    color: black;
+    font-weight: 600;
+}
+
+/*  ___________________________________________________________POPUP________ */
+
+#detalje {
+    background-color: rgba(0, 0, 0, 0.49);
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+#popup {
+    width: 75vw;
+    height: 90vw;
+    background-color: white;
+    padding: 3vw;
+    position: relative;
+    top: 10vw;
+    margin: 0 auto;
+
+}
+
+.popup_button {
+    width: 2vw;
+    height: 2vw;
+    position: fixed;
+    right: 9vw;
+    top: 10vw;
+    z-index: 1;
+    cursor: pointer;
+    background-color: transparent;
+    border-color: transparent;
+    font-weight: 600;
+    font-size: 5vw;
+    color: black;
+
+
+}
+
+.popup_button:hover {
+    text-decoration-line: none;
+}
+
+.hide {
+    display: none;
+}
+
+.popup_wrap div {
+    background-color: white;
+}
+
+.popup_wrap {
+    background-color: white;
+}
+
+/*  __________________________________________________FOOTER_____________________ */
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 20vw;
+    display: flex;
+    justify-content: center;
+    background-color: #c64545;
+}
+
+.footer_wrap {
+    width: 1320px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2vw;
+    background-color: #c64545;
+}
+
+footer div p {
+    background-color: #c64545;
+    color: white;
+    font-family: 'Courier Prime', monospace;
+    padding: 0.2vw;
+}
+
+footer div {
+    background-color: #c64545;
+}
+
+/*  __________________________________________________MEDIAQ 4 DESKTOP________ */
+@media only screen and (min-width: 1068px) {
+
+
+    p {
+        font-size: 1.12rem;
+
+    }
+
+    #popup {
+        width: 80vw;
+        height: 50vw;
+
+    }
+
+
+    #popup img {
+        width: 100%;
+    }
+
+
+    .popup_wrap {
+        display: flex;
+    }
+
+    .popup_wrap div {
+        padding-right: 3vw;
+    }
+
+
+
+    .popup_button {
+        right: 5vw;
+        font-size: 3vw;
+
+    }
+
+}
+
+@media only screen and (min-width: 1068px) {
+
+    header img {
+
+        width: 30vw;
+
+        padding-bottom: 6vw;
+
+    }
+
+    #popup {
+        height: 45vw;
+        top: 4vw;
+
+    }
+
+
+    .popup_button {
+        right: 6vw;
+        top: 4vw;
+    }
+
+
+    .header_wrap_small {
+        text-align: center;
+        width: 1380px;
+        display: flex;
+        justify-content: flex-start;
+
+    }
+
+
+    .header_wrap_big {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    footer {
+        height: 10vw;
+    }
+
+
+    footer div p {
+        font-size: 1.4rem;
+    }
 }
 
 
-h1 {
-    text-align: center;
-    color: white;
-    text-shadow: 0px 2px 3px rgb(74, 74, 74);
-    background-clip: text;
+
+
+
+@media only screen and (min-width: 1500px) {
+
+
+    header img {
+
+        width: 27vw;
+
+        padding-bottom: 4vw;
+
+        /*        left: 12vw;*/
+
+    }
 }
