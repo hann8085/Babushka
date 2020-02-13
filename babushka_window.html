@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WWW Bistro Babushka </title>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Courier+Prime|Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel='icon' href='pics/babushka_favicon.ico' type='image/x-icon' />
+</head>
+
+<body>
+
+    <div class="header_wrap_big">
+        <div class="header_wrap_small">
+            <header>
+                <img src="pics/babushka_logo.svg" alt="Babushka Bistro logo">
+            </header>
+        </div>
+    </div>
+
+
+    <h1>Alle</h1>
+    <nav>
+        <button class="filter valgt" data-kategori="alle">Alle</button>
+        <button class="filter" data-kategori="forretter">Forretter</button>
+        <button class="filter" data-kategori="hovedretter">Hovedretter</button>
+        <button class="filter" data-kategori="desserter">Desserter</button>
+        <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
+
+    </nav>
+
+    <main>
+        <section class="data_container"> </section>
+        <template>
+
+            <article class="meals">
+                <img src="" alt="">
+                <h3> </h3>
+                <p class="kort"> </p>
+                <p class="pris"></p>
+            </article>
+
+        </template>
+    </main>
+
+
+    <footer>
+        <div class="footer_wrap">
+            <div class="txt_left">
+                <p> Adresse: <br>
+                    Lygten 16 <br>
+                    2400 Kbh N</p>
+            </div>
+            <div class="txt_right">
+                <p>Åbningstider: <br>
+                    Mandag - fredag 10:30-22:00<br>
+                    Lørdag - søndag 12:00-23:00</p>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        const url = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
+
+        const detalje = document.querySelector("#detalje");
+        const container = document.querySelector(".data_container");
+        const mealsTemplate = document.querySelector("template");
+
+        let meals = [];
+        let filter = "alle";
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        console.log(id);
+
+
+        function start() {
+
+            loadMealsData();
+            addEventListenersToButtons();
+        }
+
+
+
+        async function loadMealsData() {
+            const response = await fetch(url);
+            console.log(response);
+
+            meals = await response.json();
+            console.log(meals);
+
+
+            visMeals();
+        }
+
+
+        function filtrering() {
+            console.log("filter");
+
+
+
+            filter = this.dataset.kategori;
+
+            document.querySelector("h1").textContent = this.textContent;
+
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+            })
+            this.classList.add("valgt");
+
+
+            visMeals();
+        }
+
+
+        function addEventListenersToButtons() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtrering);
+            })
+        }
+
+
+
+
+        function visMeals() {
+
+
+            container.innerHTML = "";
+            meals.feed.entry.forEach((meal) => {
+
+                if (filter == "alle" || filter == meal.gsx$kategori.$t) {
+
+
+
+                    let klon = mealsTemplate.cloneNode(true).content;
+
+                    //    Info der dukker op i hver meal kort
+                    klon.querySelector("img").src = "pics/small/" + meal.gsx$billede.$t + "-sm.jpg";
+                    klon.querySelector("h3").textContent += meal.gsx$navn.$t;
+                    klon.querySelector(".pris").textContent += meal.gsx$pris.$t + " kr";
+                    klon.querySelector(".kort").textContent += meal.gsx$kort.$t;
+
+                    klon.querySelector(".meals").addEventListener("click", () => {
+                        location.href = "detailview.html?id=" + meal.gsx$id.$t;
+                    });
+
+
+                    container.appendChild(klon);
+
+
+                }
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

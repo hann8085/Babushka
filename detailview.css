@@ -1,4 +1,5 @@
 body {
+    width: 100vw;
     background-color: #f7f7f7;
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -12,7 +13,7 @@ header img {
     background-color: transparent;
     left: 1vw;
     top: 2vw;
-    padding-bottom: 7vw;
+    padding-bottom: 2vw;
 }
 
 
@@ -38,45 +39,18 @@ p {
     color: black;
 }
 
-/*  ___________________________________________________________MEALS_______ */
-
-
-
-.data_container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-
-    grid-gap: 35px;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding-bottom: 5vw;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-
-}
-
-.meals {
-    box-shadow: 1px 1px 5px #afafaf;
-    padding: 2vw;
-    background-color: white;
-    cursor: pointer;
-}
 
 img {
     width: 100%;
     background-color: white;
 }
 
-/*  ___________________________________________________________FILTER________ */
-
-nav {
-    text-align: center;
 
 
-}
+/*  ___________________________________________________________POPUP________ */
+#detalje {}
 
-button {
-
+.back {
     font-size: 1.3em;
     background-color: transparent;
     border-color: transparent;
@@ -84,10 +58,12 @@ button {
     margin-top: 2vw;
     padding-left: 4.7vw;
     padding-right: 4.7vw;
-
+    z-index: 999999999;
     font-family: 'Courier Prime', monospace;
     color: #868686;
     cursor: pointer;
+    position: absolute;
+    left: 6.5vw;
 }
 
 
@@ -96,63 +72,20 @@ button:hover {
     text-decoration-color: #c64545;
 }
 
-.valgt {
-    text-decoration-line: underline;
-    text-decoration-color: #c64545;
-    color: black;
-    font-weight: 600;
-}
-
-/*  ___________________________________________________________POPUP________ */
-
-#detalje {
-    background-color: rgba(0, 0, 0, 0.49);
-    width: 100vw;
-    height: 100vh;
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-    z-index: 1;
-
-}
-
 #popup {
-    width: 75vw;
-    height: 80vh;
+    width: 80%;
+    height: 70vh;
     background-color: white;
     padding: 3vw;
-    position: relative;
-    top: 10vw;
     margin: 0 auto;
+    box-shadow: 1px 1px 5px #afafaf;
+    margin-top: 4vw;
+    margin-bottom: -30vw;
+    position: relative;
 
+    top: 2vw;
 }
 
-.popup_button {
-    width: 2vw;
-    height: 2vw;
-    position: fixed;
-    right: 9vw;
-    top: 10vw;
-    z-index: 1;
-    cursor: pointer;
-    background-color: transparent;
-    border-color: transparent;
-    font-weight: 600;
-    font-size: 5vw;
-    color: black;
-
-
-}
-
-.popup_button:hover {
-    text-decoration-line: none;
-}
-
-.hide {
-    display: none;
-}
 
 .popup_wrap div {
     background-color: white;
@@ -166,13 +99,13 @@ button:hover {
 
 footer {
     position: relative;
-    bottom: 0;
-    left: 0;
+    bottom: -40vw;
     width: 100vw;
     height: 20vw;
     display: flex;
     justify-content: center;
     background-color: #c64545;
+
 }
 
 .footer_wrap {
@@ -190,6 +123,7 @@ footer div p {
     padding: 0.2vw;
     padding-left: 2vw;
     padding-right: 2vw;
+    font-size: 1.3rem;
 }
 
 footer div {
@@ -197,34 +131,25 @@ footer div {
 }
 
 /*  __________________________________________________MEDIAQ 4 DESKTOP________ */
+
 @media only screen and (min-width: 1068px) {
-
-    .data_container {
-        padding-left: 0;
-        padding-right: 0;
-
-    }
 
 
     header img {
 
         width: 30vw;
 
-        padding-bottom: 6vw;
-
     }
+
+
 
     #popup {
-        width: 80vw;
+        max-width: 1330px;
         height: 50vw;
-        top: 4vw;
 
     }
 
-    .popup_button {
-        right: 7vw;
-        top: 3vw;
-    }
+
 
     .popup_wrap {
         display: flex;
@@ -233,7 +158,6 @@ footer div {
     .popup_wrap div {
         padding-right: 3vw;
     }
-
 
 
 
@@ -246,8 +170,6 @@ footer div {
     }
 
 
-
-
     .header_wrap_big {
         width: 100vw;
         display: flex;
@@ -257,28 +179,28 @@ footer div {
 
     footer {
         height: 14vw;
+
     }
 
 
     footer div p {
         font-size: 1.4rem;
-    }
-}
-
-
-
-
-
-@media only screen and (min-width: 1500px) {
-
-
-    header img {
-
-        width: 27vw;
-
-        padding-bottom: 4vw;
-
-        /*        left: 12vw;*/
 
     }
-}
+
+
+
+
+
+    @media only screen and (min-width: 1500px) {
+
+        header img {
+
+            width: 27vw;
+
+        }
+
+        footer {
+            padding: 0;
+        }
+    }

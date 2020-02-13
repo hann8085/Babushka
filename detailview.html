@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W D Bistro Babushka</title>
+    <link rel="stylesheet" href="detailview.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Courier+Prime|Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel='icon' href='pics/babushka_favicon.ico' type='image/x-icon' />
+
+</head>
+
+<body>
+
+    <div class="header_wrap_big">
+        <div class="header_wrap_small">
+            <header>
+                <img src="pics/babushka_logo.svg" alt="Babushka Bistro logo">
+            </header>
+        </div>
+    </div>
+
+
+    <section class="" id="detalje">
+        <button class="back" Tilbage></button>
+        <article id="popup">
+            <h2> </h2>
+            <div class="popup_wrap">
+                <div> <img src="" alt=""></div>
+                <div>
+                    <p class="lang"></p>
+                    <p class="oprindelse">Oprindelse: </p>
+                    <p class="pris_popup"></p>
+                </div>
+
+
+            </div>
+        </article>
+
+    </section>
+
+
+    <footer>
+        <div class="footer_wrap">
+            <div class="txt_left">
+                <p style="text-decoration: underline; text-decoration-color: black;"> Adresse <br></p>
+                <p> Lygten 16 <br>
+                    2400 Kbh N</p>
+            </div>
+            <div class="txt_right">
+                <p style="text-decoration: underline; text-decoration-color: black;"> Åbningstider <br></p>
+                <p> Mandag - fredag 10:30-22:00<br>
+                    Lørdag - søndag 12:00-23:00</p>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        const url = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
+
+        let meals = [];
+
+        const detalje = document.querySelector("#detalje");
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        console.log(id);
+
+
+
+
+        function start() {
+
+            loadMealsData();
+
+        }
+
+
+
+        async function loadMealsData() {
+            const response = await fetch(url);
+            console.log(response);
+
+            meals = await response.json();
+            console.log(meals);
+
+
+            visMeals();
+        }
+
+
+
+        function visMeals() {
+
+            meals.feed.entry.forEach((meal) => {
+
+                if (meal.gsx$id.$t == id) {
+
+                    detalje.querySelector("h2").textContent = meal.gsx$navn.$t;
+
+                    detalje.querySelector("img").src = "pics/large/" + meal.gsx$billede.$t + ".jpg";
+                    detalje.querySelector("img").alt = "Billede af " + meal.gsx$navn.$t;
+                    detalje.querySelector(".lang").textContent = meal.gsx$lang.$t;
+                    detalje.querySelector(".oprindelse").textContent = meal.gsx$oprindelse.$t;
+                    detalje.querySelector(".pris_popup").textContent = meal.gsx$pris.$t + " kr";
+
+
+                }
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>
